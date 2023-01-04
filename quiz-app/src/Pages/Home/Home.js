@@ -3,12 +3,14 @@ import "./Home.css"
 import {Button, colors, MenuItem, TextField} from '@material-ui/core';
 import Categories from '../../Data/Categories';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 
-const Home = ({name,setName}) => {
+const Home = ({name,setName, fetchQuestions}) => {
   const [category, setCategory] = useState('');
   const [difficulty, setdifficulty] = useState('');
   const [error, setError] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
 const handleSubmit=()=>{
 if(!category|| !difficulty||!name){
@@ -18,7 +20,7 @@ if(!category|| !difficulty||!name){
 else{
   setError(false);
   fetchQuestions(category, difficulty);
-  history.pushState('/quiz');
+  navigate('/quiz');
 }
 };
  
@@ -29,13 +31,15 @@ else{
         
         <div className='settings_select'>
           {error&& <ErrorMessage>Please Fill all the Fields</ErrorMessage>}
-          <TextField style={{marginBottom:25}} 
+          <TextField 
+          style={{marginBottom:25}} 
           label='Enter Your Name' 
           variant='outlined'
           onChange={(e)=> setName(e.target.value)}
           
           />
-          <TextField select
+          <TextField 
+          select
           label='Select Category' 
           variant='outlined'
           style={{marginBottom:30}}
