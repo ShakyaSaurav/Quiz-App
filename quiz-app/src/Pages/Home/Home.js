@@ -7,6 +7,20 @@ import { useState } from 'react';
 const Home = ({name,setName}) => {
   const [category, setCategory] = useState('');
   const [difficulty, setdifficulty] = useState('');
+  const [error, setError] = useState(false);
+  const history = useHistory();
+
+const handleSubmit=()=>{
+if(!category|| !difficulty||!name){
+  setError(true);
+  return;
+}
+else{
+  setError(false);
+  fetchQuestions(category, difficulty);
+  history.pushState('/quiz');
+}
+};
  
   return (
     <div className='content'>
@@ -14,6 +28,7 @@ const Home = ({name,setName}) => {
         <span style={{fontSize:30}}>Quiz Setting</span>
         
         <div className='settings_select'>
+          {error&& <ErrorMessage>Please Fill all the Fields</ErrorMessage>}
           <TextField style={{marginBottom:25}} 
           label='Enter Your Name' 
           variant='outlined'
@@ -51,7 +66,7 @@ const Home = ({name,setName}) => {
                 Hard
               </MenuItem>
             </TextField>
-            <Button variant='contained' color='primary' size='large'>
+            <Button variant='contained' color='primary' size='large' onClick={handleSubmit}>
               Start Quiz
             </Button>
 
