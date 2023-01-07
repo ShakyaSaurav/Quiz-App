@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Home.css"
-import {Button, colors, MenuItem, TextField} from '@material-ui/core';
+import {Button, MenuItem, TextField} from '@material-ui/core';
 import Categories from '../../Data/Categories';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

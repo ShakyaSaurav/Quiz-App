@@ -9,24 +9,23 @@ const Quiz = ({name,score,questions,setQuestions,setScore}) => {
   const [options, setOptions] = useState();
   const [currQues, setCurrQues] = useState(0);
   useEffect(()=>{
-    console.log(questions);
+   // console.log(questions);
 
     setOptions(questions && handleShuffle([questions[currQues]?.correct_answer,
     ...questions[currQues]?.incorrect_answers,])
     );
-  },[questions,currQues]);
+  },[currQues,questions]);
 
-  console.log(options);
+  console.log(questions);
   
-  const handleShuffle=(optionss)=>{
+  const handleShuffle=(options)=>{
 
-  return optionss
-  .sort(()=>Math.random() - 0.5);
+  return options.sort(()=>Math.random() - 0.5);
   }
   
   return (
     <div className='quiz'>
-      <span className='subtitle'> Welcome,{name}
+      <span className='subtitle'> Welcome, {name}
       </span>
       {
         questions ?(
@@ -44,6 +43,7 @@ const Quiz = ({name,score,questions,setQuestions,setScore}) => {
         correct={questions[currQues]?.correct_answer}
         score={score}
         setScore={setScore}
+        setQuestions={setQuestions}
         />
         </> 
         ): (<CircularProgress style={{margin:100}} color="inherit" size={150} thickness={1}/>)

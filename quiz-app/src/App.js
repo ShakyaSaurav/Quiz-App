@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 function App() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState();
   const [questions, setQuestions] = useState();
   const [score, setScore] = useState(0);
 

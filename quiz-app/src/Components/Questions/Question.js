@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import './Question.css'
 import { Button } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 const Question = ({
   currQues,
@@ -12,10 +13,13 @@ const Question = ({
   correct,
   setScore,
   score,
+  setQuestions,
 
 }) => {
-  const [selected, setSelected] = useState()
-  const [error, setError] = useState(false)
+  const [selected, setSelected] = useState();
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
+  
 
   const handleSelect=(i)=>{
     if(selected===i && selected===correct){
@@ -33,35 +37,37 @@ const Question = ({
     if(i=== correct) setScore(score+1);
     setError(false);
   }
+  
   const handleNext = () => {
-    if(currQues>8){
-      history.pushState('/result');
+    if(currQues > 8){
+      navigate('/result');
     }
-    else if(selected){
+    else if(selected) {
       setCurrQues(currQues+1);
       setSelected();
     }
-    else{
-      setError('Please select an Option first')
-    }
-  }
+    else
+      setError('Please select an Option first');
+  };
   
   const handleQuit=()=>{
-    
-  }
+   setCurrQues(0);
+   setQuestions(); 
+  };
   return (
     <div className='question'>
-      <h1>Question {currQues + 1}</h1>
+      <h1>Question {currQues + 1} : </h1>
       <div className='singleQuestion'>
         <h2>{questions[currQues].question}</h2>
         <div className='options'>
           {error && <ErrorMessage>{error}</ErrorMessage>}
           {
-            options && options.map(i=>(
+            options && options.map((i)=>(
               <button onClick={()=>handleCheck(i)
               }
               className={`singleOption ${selected && handleSelect(i)}`}
               key={i}
+
               disabled={selected}
               >
                 {i}
@@ -76,7 +82,7 @@ const Question = ({
             size='large'
             style={{width:185}}
             href='/'
-            onClick={handleQuit}
+            onClick={()=>handleQuit()}
             >
               Quit
             </Button>
@@ -85,8 +91,8 @@ const Question = ({
             size='large'
             style={{width:185}}
             href='/'
-            onClick={handleNext}>
-              Next Question
+            onClick={()=>handleNext()}>
+              {currQues>20?'Submit':'Next Question'}
             </Button>
           </div>
 
