@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import './Question.css'
+import { Button } from '@material-ui/core';
 
 const Question = ({
   currQues,
@@ -54,6 +55,26 @@ const Question = ({
             ))
           }
         </div>
+          <div className='controls'>
+            <Button
+            variant='contained'
+            color='secondary'
+            size='large'
+            style={{width:185}}
+            href='/'
+            >
+              Quit
+            </Button>
+            <Button  variant='contained'
+            color='secondary'
+            size='large'
+            style={{width:185}}
+            href='/'>
+              Next Question
+            </Button>
+          </div>
+
+
       </div>
     </div>
   )
