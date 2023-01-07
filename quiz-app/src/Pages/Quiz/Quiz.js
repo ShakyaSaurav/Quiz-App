@@ -14,7 +14,7 @@ const Quiz = ({name,score,questions,setQuestions,setScore}) => {
     setOptions(questions && handleShuffle([questions[currQues]?.correct_answer,
     ...questions[currQues]?.incorrect_answers,])
     );
-  },[questions]);
+  },[questions,currQues]);
 
   console.log(options);
   
@@ -44,7 +44,6 @@ const Quiz = ({name,score,questions,setQuestions,setScore}) => {
         correct={questions[currQues]?.correct_answer}
         score={score}
         setScore={setScore}
-        setQuestions={setQuestions}
         />
         </> 
         ): (<CircularProgress style={{margin:100}} color="inherit" size={150} thickness={1}/>)

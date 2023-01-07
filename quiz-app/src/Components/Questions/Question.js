@@ -12,7 +12,6 @@ const Question = ({
   correct,
   setScore,
   score,
-  setQuestions,
 
 }) => {
   const [selected, setSelected] = useState()
@@ -34,7 +33,22 @@ const Question = ({
     if(i=== correct) setScore(score+1);
     setError(false);
   }
+  const handleNext = () => {
+    if(currQues>8){
+      history.pushState('/result');
+    }
+    else if(selected){
+      setCurrQues(currQues+1);
+      setSelected();
+    }
+    else{
+      setError('Please select an Option first')
+    }
+  }
   
+  const handleQuit=()=>{
+    
+  }
   return (
     <div className='question'>
       <h1>Question {currQues + 1}</h1>
@@ -62,6 +76,7 @@ const Question = ({
             size='large'
             style={{width:185}}
             href='/'
+            onClick={handleQuit}
             >
               Quit
             </Button>
@@ -69,7 +84,8 @@ const Question = ({
             color='secondary'
             size='large'
             style={{width:185}}
-            href='/'>
+            href='/'
+            onClick={handleNext}>
               Next Question
             </Button>
           </div>
