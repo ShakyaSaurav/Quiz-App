@@ -8,15 +8,13 @@ import Question from '../../Components/Questions/Question';
 const Quiz = ({name,score,questions,setQuestions,setScore}) => {
   const [options, setOptions] = useState();
   const [currQues, setCurrQues] = useState(0);
-  useEffect(() => {
-    setOptions(
-      questions &&
-        handleShuffle([
-          questions[currQues]?.correct_answer,
-          ...questions[currQues]?.incorrect_answers,
-        ])
+  useEffect(()=>{
+   // console.log(questions);
+
+    setOptions(questions && handleShuffle([questions[currQues]?.correct_answer,
+    ...questions[currQues]?.incorrect_answers,])
     );
-  }, [currQues, questions]);
+  },[currQues,questions]);
 
   console.log(questions);
   
