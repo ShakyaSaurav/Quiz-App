@@ -67,7 +67,7 @@ const Question = ({
               }
               className={`singleOption ${selected && handleSelect(i)}`}
               key={i}
-
+            
               disabled={selected}
               >
                 {i}
@@ -86,12 +86,12 @@ const Question = ({
             >
               Quit
             </Button>
-            <Button  variant='contained'
+            <Button  
+            variant='contained'
             color='secondary'
             size='large'
             style={{width:185}}
-            href='/'
-            onClick={()=>handleNext()}>
+            onClick={handleNext}>
               {currQues>20?'Submit':'Next Question'}
             </Button>
           </div>
@@ -102,4 +102,4 @@ const Question = ({
   )
 }
 
-export default Question
+export default Question;
