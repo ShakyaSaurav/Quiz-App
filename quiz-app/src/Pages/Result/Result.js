@@ -5,13 +5,13 @@ import { Button } from '@material-ui/core';
 import './Result.css'
 
 const Result = ({name,score}) => {
-  const history= useNavigate();
+  const historyy= useNavigate();
 
   useEffect(()=>{
     if(!name){
-      history.push('/');
+      historyy('/');
     }
-  },[name,history]);
+  },[historyy,name]);
   return (
     <div className='result'>
       <span className='title'> Final Score : {score}</span>
